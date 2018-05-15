@@ -1,10 +1,9 @@
 import React from 'react';
-import { 
-  StackRouter, 
-  NavigationActions, 
-  createNavigationContainer, 
-  createNavigator, 
-  StackActions 
+import {
+  StackRouter,
+  NavigationActions,
+  createNavigator,
+  StackActions,
 } from 'react-navigation';
 import FluidTransitioner from './FluidTransitioner';
 
@@ -45,17 +44,17 @@ export default (routeConfigMap, stackConfig = {}) => {
               navigation.dispatch(
                 StackActions.completeTransition({
                   key: navigation.state.key,
-                })
+                }),
               );
             }
             onTransitionEnd && onTransitionEnd(transition, lastTransition);
           }}
-      />
+        />
       );
     }
   }
 
   const router = StackRouter(routeConfigMap, stackRouterConfig);
   const Navigator = createNavigator(FluidView, router, stackConfig);
-  return createNavigationContainer(Navigator);
+  return Navigator;
 };
